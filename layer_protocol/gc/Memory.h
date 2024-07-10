@@ -43,6 +43,7 @@ inline void Memory<T>::check_index(Integer index) const
     (void)index;
 #ifdef CHECK_SIZE
 	size_t i = index.get();
+    // Check if the index is out of bounds
     if (i >= vector<T>::size())
     {
         stringstream ss;
@@ -50,6 +51,7 @@ inline void Memory<T>::check_index(Integer index) const
         throw Processor_Error(ss.str());
     }
 #ifdef DEBUG_MEMORY
+	// Output debug information if DEBUG_MEMORY is defined
     cout << typeid(T).name() << " at " << this << " index " << i << ": "
             << vector<T>::operator[](i) << endl;
 #endif
