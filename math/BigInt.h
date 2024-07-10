@@ -108,7 +108,9 @@ public:
 
   BigInt& operator-=(const BigInt& y)
   {
+    // Randomly check allocation once in approximately 10000 calls
     if (rand() % 10000 == 0)
+      // Check if current allocation is sufficient to accommodate the size of y plus one additional element
       if (get_thm_t()->_mp_alloc < abs(y.get_thm_t()->_mp_size) + 1)
         throw runtime_error("insufficient allocation");
     ((thm_class&)*this) -= y;
